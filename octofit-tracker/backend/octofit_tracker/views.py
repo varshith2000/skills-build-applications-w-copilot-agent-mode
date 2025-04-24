@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 @api_view(['GET'])
 def api_root(request):
-    base_url = 'https://skills-build-applications-w-copilot-agent-mode-8000.app.github.dev/'
+    base_url = 'https://symmetrical-guide-65v9g9p75pg2qxx-8000.app.github.dev/'
     return Response({
         'users': base_url + 'users/',
         'teams': base_url + 'teams/',

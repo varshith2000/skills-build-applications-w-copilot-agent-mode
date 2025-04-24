@@ -29,6 +29,8 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'symmetrical-guide-65v9g9p75pg2qxx-8000.app.github.dev',
+    'skills-build-applications-w-copilot-agent-mode-8000.app.github.dev',
+    '*',
 ]
 
 
@@ -42,7 +44,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'octofit_tracker',
-    'djongo',
 ]
 
 MIDDLEWARE = [
@@ -82,7 +83,7 @@ WSGI_APPLICATION = "octofit_tracker.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
     }
 }
 
