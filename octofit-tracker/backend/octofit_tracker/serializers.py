@@ -1,22 +1,27 @@
 from rest_framework import serializers
+from .models import User, Team, Activity, Leaderboard, Workout
 
-class UserSerializer(serializers.Serializer):
-    email = serializers.EmailField()
-    name = serializers.CharField(max_length=100)
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
 
-class TeamSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=100)
-    members = serializers.ListField(child=serializers.EmailField())
+class TeamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Team
+        fields = '__all__'
 
-class ActivitySerializer(serializers.Serializer):
-    user_email = serializers.EmailField()
-    activity_type = serializers.CharField(max_length=50)
-    duration = serializers.IntegerField()
+class ActivitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Activity
+        fields = '__all__'
 
-class LeaderboardSerializer(serializers.Serializer):
-    user_email = serializers.EmailField()
-    points = serializers.IntegerField()
+class LeaderboardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Leaderboard
+        fields = '__all__'
 
-class WorkoutSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=100)
-    description = serializers.CharField(max_length=500)
+class WorkoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Workout
+        fields = '__all__'

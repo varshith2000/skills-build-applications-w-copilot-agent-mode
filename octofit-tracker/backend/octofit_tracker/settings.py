@@ -25,7 +25,11 @@ SECRET_KEY = "django-insecure-f4hq-wjf*kwh&!_t6g88t-^&03kj%w%hy2k_j090d)tw^z^j&2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'symmetrical-guide-65v9g9p75pg2qxx-8000.app.github.dev',
+]
 
 
 # Application definition
@@ -37,7 +41,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'octofit_app',
     'octofit_tracker',
     'djongo',
 ]
@@ -78,8 +81,8 @@ WSGI_APPLICATION = "octofit_tracker.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'octofit_db',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

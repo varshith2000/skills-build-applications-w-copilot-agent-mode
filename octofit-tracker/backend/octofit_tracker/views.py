@@ -1,38 +1,41 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from django.http import JsonResponse
+from rest_framework import viewsets
 from .models import User, Team, Activity, Leaderboard, Workout
 from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, LeaderboardSerializer, WorkoutSerializer
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 @api_view(['GET'])
 def api_root(request):
-    return Response({"message": "Welcome to the OctoFit API"})
+    base_url = 'https://skills-build-applications-w-copilot-agent-mode-8000.app.github.dev/'
+    return Response({
+        'users': base_url + 'users/',
+        'teams': base_url + 'teams/',
+        'activities': base_url + 'activity/',
+        'leaderboard': base_url + 'leaderboard/',
+        'workouts': base_url + 'workouts/'
+    })
 
-class UserList(APIView):
-    def get(self, request):
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return Response(serializer.data)
+class UserList(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-class TeamList(APIView):
-    def get(self, request):
-        teams = Team.objects.all()
-        serializer = TeamSerializer(teams, many=True)
-        return Response(serializer.data)
+class TeamList(viewsets.ModelViewSet):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
 
-class ActivityList(APIView):
-    def get(self, request):
-        activities = Activity.objects.all()
-        serializer = ActivitySerializer(activities, many=True)
-        return Response(serializer.data)
+class ActivityList(viewsets.ModelViewSet):
+    queryset = Activity.objects.all()
+    serializer_class = ActivitySerializer
 
-class LeaderboardList(APIView):
-    def get(self, request):
-        leaderboard = Leaderboard.objects.all()
-        serializer = LeaderboardSerializer(leaderboard, many=True)
-        return Response(serializer.data)
+class LeaderboardList(viewsets.ModelViewSet):
+    queryset = Leaderboard.objects.all()
+    serializer_class = LeaderboardSerializer
 
-class WorkoutList(APIView):
-    def get(self, request):
-        workouts = Workout.objects.all()
-        serializer = WorkoutSerializer(workouts, many=True)
-        return Response(serializer.data)
+class WorkoutList(viewsets.ModelViewSet):
+    queryset = Workout.objects.all()
+    serializer_class = WorkoutSerializer
+
+def users_simple_api(request):
+    data = list(User.objects.values())
+    return JsonResponse(data, safe=False)
